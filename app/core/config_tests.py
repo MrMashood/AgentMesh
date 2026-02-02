@@ -34,7 +34,7 @@ if __name__ == "__main__":
         print(f"   {agent_type}: temp={config['temperature']}, retries={config['max_retries']}")
     
     # Test directory creation
-    print(f"\n📁 Directories:")
+    print("\nDirectories:")
     print(f"   Memory: {settings.MEMORY_DIR}")
     print(f"   Logs: {settings.LOG_DIR}")
     

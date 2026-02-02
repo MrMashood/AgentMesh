@@ -1,9 +1,7 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import Field
 from typing import List
-import os
 from pathlib import Path
-
 
 class Settings(BaseSettings):
     """
@@ -233,6 +231,7 @@ class Settings(BaseSettings):
             }
         else:
             raise ValueError(f"Unsupported LLM provider: {self.LLM_PROVIDER}")
+        
     
     def get_agent_config(self, agent_type: str) -> dict:
         """
@@ -306,10 +305,3 @@ def reload_settings():
     settings = Settings()
     return settings
     
-
-if __name__ != "__main__":
-    validation = settings.validate_api_keys()
-    if not validation["valid"]:
-        print("⚠️  Configuration Issues:")
-        for issue in validation["issues"]:
-            print(f"   - {issue}")
