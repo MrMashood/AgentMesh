@@ -60,3 +60,11 @@
 2026-02-02 21:44:23 | INFO     | agentmesh | info:81 | Searching web | query=dengue prevention South Asia | max_results=3
 2026-02-02 21:44:24 | INFO     | agentmesh | info:81 | Search successful | query=dengue prevention South Asia | results_found=3
 2026-02-02 21:44:24 | INFO     | agentmesh | info:81 | ✅ Success: search_web | results_count=3
+2026-02-02 21:48:26 | INFO     | agentmesh | info:81 | 🔧 Tool call: search_web | query=WHO heatwave guidelines | max_results=3
+2026-02-02 21:48:26 | INFO     | agentmesh | info:81 | Searching web | query=WHO heatwave guidelines | max_results=3
+2026-02-02 21:48:28 | INFO     | agentmesh | info:81 | Search successful | query=WHO heatwave guidelines | results_found=3
+2026-02-02 21:48:28 | INFO     | agentmesh | info:81 | ✅ Success: search_web | results_count=3
+2026-02-02 21:48:28 | INFO     | agentmesh | info:81 | 🔧 Tool call: search_web | query=dengue prevention South Asia | max_results=3
+2026-02-02 21:48:28 | INFO     | agentmesh | info:81 | Searching web | query=dengue prevention South Asia | max_results=3
+2026-02-02 21:48:29 | INFO     | agentmesh | info:81 | Search successful | query=dengue prevention South Asia | results_found=3
+2026-02-02 21:48:29 | INFO     | agentmesh | info:81 | ✅ Success: search_web | results_count=3
