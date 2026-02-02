@@ -1,0 +1,28 @@
+2026-02-02 19:06:40 | INFO     | agentmesh | info:81 | This is an info message
+2026-02-02 19:06:40 | WARNING  | agentmesh | warning:85 | This is a warning message
+2026-02-02 19:06:40 | ERROR    | agentmesh | error:89 | This is an error message
+2026-02-02 19:06:40 | CRITICAL | agentmesh | critical:93 | This is a critical message
+2026-02-02 19:06:40 | INFO     | planner | info:81 | Creating research plan
+2026-02-02 19:06:40 | INFO     | research | info:81 | Executing web search
+2026-02-02 19:06:40 | INFO     | planner | info:81 | Plan completed
+2026-02-02 19:06:40 | INFO     | agentmesh | info:81 | 🤖 Planner → Creating plan | steps=3 | estimated_time=30s
+2026-02-02 19:06:40 | INFO     | agentmesh | info:81 | 🤖 Research → Searching web | query=WHO guidelines
+2026-02-02 19:06:40 | INFO     | agentmesh | info:81 | 🤖 Verification → Verifying claims | claims_count=5
+2026-02-02 19:06:40 | INFO     | agentmesh | info:81 | 🔧 Tool call: search_web | query=heatwave guidelines | max_results=5
+2026-02-02 19:06:40 | INFO     | agentmesh | info:81 | ✅ Success: search_web | results_found=5
+2026-02-02 19:06:40 | INFO     | agentmesh | info:81 | 🔧 Tool call: open_url | url=https://who.int/...
+2026-02-02 19:06:40 | INFO     | agentmesh | info:81 | ✅ Success: open_url | content_length=145KB
+2026-02-02 19:06:40 | INFO     | agentmesh | info:81 | 📝 New query started | query=What are WHO heatwave guidelines? | query_id=query_12345
+2026-02-02 19:06:40 | INFO     | agentmesh | info:81 | Processing query... | step=research
+2026-02-02 19:06:40 | INFO     | agentmesh | info:81 | Verifying results... | step=verification
+2026-02-02 19:06:40 | INFO     | agentmesh | info:81 | Synthesizing answer... | step=synthesis
+2026-02-02 19:06:40 | INFO     | agentmesh | info:81 | ✅ Query completed | query_id=query_12345 | confidence=0.92 | duration_seconds=2.50
+2026-02-02 19:06:41 | INFO     | agentmesh | info:81 | Found 5 results
+2026-02-02 19:06:41 | INFO     | agentmesh | info:81 | ✅ Completed: Web search operation | duration=1.00s
+2026-02-02 19:06:42 | INFO     | agentmesh | info:81 | Fetched page content
+2026-02-02 19:06:42 | INFO     | agentmesh | info:81 | ✅ Completed: URL fetch operation | duration=0.50s
+2026-02-02 19:06:42 | INFO     | __main__ | info:81 | ✅ Completed: test_function | duration=0.30s
+2026-02-02 19:06:42 | INFO     | agentmesh | info:81 | Function result: 15
+2026-02-02 19:06:42 | INFO     | agentmesh | info:81 | Starting operation...
+2026-02-02 19:06:42 | ERROR    | agentmesh | error:89 | ❌ Failed: Operation that fails | duration=0.00s | error=Something went wrong!
+2026-02-02 19:06:42 | ERROR    | agentmesh | error:89 | Caught error | error_type=ValueError
