@@ -36,3 +36,11 @@
 2026-02-02 20:00:54 | ERROR    | agentmesh | error:89 | Unexpected error: Some unexpected error | error_type=ValueError
 2026-02-02 20:03:58 | ERROR    | agentmesh | error:89 | AgentMesh Error: Research failed for query 'test query': No results found | error_code=AGENT_RESEARCH_FAILED | query=test query | reason=No results found | agent_name=research
 2026-02-02 20:03:58 | ERROR    | agentmesh | error:89 | Unexpected error: Some unexpected error | error_type=ValueError
+2026-02-02 20:32:05 | INFO     | agentmesh | info:81 | 🔧 Tool call: search_web | query=WHO heatwave guidelines | max_results=3
+2026-02-02 20:32:05 | INFO     | agentmesh | info:81 | Searching web | query=WHO heatwave guidelines | max_results=3
+2026-02-02 20:32:08 | INFO     | agentmesh | info:81 | Search successful | query=WHO heatwave guidelines | results_found=3
+2026-02-02 20:32:08 | INFO     | agentmesh | info:81 | ✅ Success: search_web | results_count=3
+2026-02-02 20:32:08 | INFO     | agentmesh | info:81 | 🔧 Tool call: search_web | query=dengue prevention South Asia | max_results=3
+2026-02-02 20:32:08 | INFO     | agentmesh | info:81 | Searching web | query=dengue prevention South Asia | max_results=3
+2026-02-02 20:32:10 | INFO     | agentmesh | info:81 | Search successful | query=dengue prevention South Asia | results_found=3
+2026-02-02 20:32:10 | INFO     | agentmesh | info:81 | ✅ Success: search_web | results_count=3
