@@ -34,7 +34,7 @@ class RateLimiter:
     def wait_if_needed(self):
         """Wait if rate limit reached"""
         if not self.can_call():
-            wait_time = 60 - (datetime.now() - self.calls[0]).seconds
+            wait_time = 60 - (datetime.now() - self.calls[0]).total_seconds()
             logger.warning(f"Rate limit reached. Waiting {wait_time}s...")
             time.sleep(wait_time)
     
@@ -47,11 +47,7 @@ class RateLimiter:
 rate_limiter = RateLimiter(settings.RATE_LIMIT_CALLS_PER_MINUTE)
 
 
-def search_web(
-    query: str,
-    max_results: Optional[int] = None,
-    retry_count: int = 0
-) -> List[Dict]:
+def search_web(query: str,max_results: Optional[int] = None, retry_count: int = 0) -> List[Dict]:
     """
     Search the web using Tavily API
     
