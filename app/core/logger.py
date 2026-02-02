@@ -4,7 +4,7 @@ from pathlib import Path
 from datetime import datetime
 from typing import Optional
 import colorlog
-from config import settings
+from app.core.config import settings
 
 
 class AgentLogger:

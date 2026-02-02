@@ -26,3 +26,13 @@
 2026-02-02 19:06:42 | INFO     | agentmesh | info:81 | Starting operation...
 2026-02-02 19:06:42 | ERROR    | agentmesh | error:89 | ❌ Failed: Operation that fails | duration=0.00s | error=Something went wrong!
 2026-02-02 19:06:42 | ERROR    | agentmesh | error:89 | Caught error | error_type=ValueError
+2026-02-02 19:46:11 | ERROR    | agentmesh | error:89 | AgentMesh Error: Research failed for query 'test query': No results found | error_code=AGENT_RESEARCH_FAILED | query=test query | reason=No results found | agent_name=research
+2026-02-02 19:46:11 | ERROR    | agentmesh | error:89 | Unexpected error: Some unexpected error | error_type=ValueError
+2026-02-02 19:51:40 | ERROR    | agentmesh | error:89 | AgentMesh Error: Research failed for query 'test query': No results found | error_code=AGENT_RESEARCH_FAILED | query=test query | reason=No results found | agent_name=research
+2026-02-02 19:51:40 | ERROR    | agentmesh | error:89 | Unexpected error: Some unexpected error | error_type=ValueError
+2026-02-02 19:56:08 | ERROR    | agentmesh | error:89 | AgentMesh Error: Research failed for query 'test query': No results found | error_code=AGENT_RESEARCH_FAILED | query=test query | reason=No results found | agent_name=research
+2026-02-02 19:56:08 | ERROR    | agentmesh | error:89 | Unexpected error: Some unexpected error | error_type=ValueError
+2026-02-02 20:00:54 | ERROR    | agentmesh | error:89 | AgentMesh Error: Research failed for query 'test query': No results found | error_code=AGENT_RESEARCH_FAILED | query=test query | reason=No results found | agent_name=research
+2026-02-02 20:00:54 | ERROR    | agentmesh | error:89 | Unexpected error: Some unexpected error | error_type=ValueError
+2026-02-02 20:03:58 | ERROR    | agentmesh | error:89 | AgentMesh Error: Research failed for query 'test query': No results found | error_code=AGENT_RESEARCH_FAILED | query=test query | reason=No results found | agent_name=research
+2026-02-02 20:03:58 | ERROR    | agentmesh | error:89 | Unexpected error: Some unexpected error | error_type=ValueError
