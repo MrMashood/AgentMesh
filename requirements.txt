@@ -1,4 +1,17 @@
+# Web Search
 requests==2.31.0
-beautifulsoup4==4.12.2
 tavily-python==0.1.5
 python-dotenv==1.0.1
+
+
+# HTML Parsing
+beautifulsoup4==4.12.2
+
+
+# Configuration
+pydantic==2.11.7
+pydantic-settings==2.3.2
+
+
+# Logging
+colorlog==6.7.0
