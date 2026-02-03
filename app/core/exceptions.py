@@ -49,7 +49,6 @@ class AgentMeshException(Exception):
         return f"[{self.error_code}] {self.message}{context_str}"
 
 
-# ==================== Configuration Exceptions ====================
 
 class ConfigurationError(AgentMeshException):
     """Raised when there's a configuration problem"""
@@ -77,7 +76,6 @@ class MissingAPIKeyError(ConfigurationError):
         )
 
 
-# ==================== Tool Exceptions ====================
 
 class ToolException(AgentMeshException):
     """Base exception for tool-related errors"""
@@ -168,8 +166,6 @@ class DomainNotAllowedError(InvalidURLError):
             context=context
         )
 
-
-# ==================== Agent Exceptions ====================
 
 class AgentException(AgentMeshException):
     """Base exception for agent-related errors"""
@@ -263,8 +259,6 @@ class LowConfidenceError(AgentException):
         )
 
 
-# ==================== Memory Exceptions ====================
-
 class MemoryException(AgentMeshException):
     """Base exception for memory-related errors"""
     
@@ -314,8 +308,6 @@ class MemoryRetrievalError(MemoryException):
         )
 
 
-# ==================== LLM Exceptions ====================
-
 class LLMException(AgentMeshException):
     """Base exception for LLM-related errors"""
     
@@ -364,8 +356,6 @@ class LLMResponseError(LLMException):
             context=ctx
         )
 
-
-# ==================== Orchestration Exceptions ====================
 
 class OrchestrationException(AgentMeshException):
     """Base exception for orchestration errors"""
@@ -427,8 +417,6 @@ class InvalidStateError(OrchestrationException):
         )
 
 
-# ==================== Validation Exceptions ====================
-
 class ValidationException(AgentMeshException):
     """Base exception for validation errors"""
     
@@ -468,8 +456,6 @@ class InvalidParameterError(ValidationException):
             context=ctx
         )
 
-
-# ==================== Helper Functions ====================
 
 def handle_exception(exception: Exception, logger) -> Dict[str, Any]:
     """
