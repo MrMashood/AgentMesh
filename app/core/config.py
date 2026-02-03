@@ -265,33 +265,30 @@ class Settings(BaseSettings):
             Formatted string with settings
         """
         output = []
-        output.append("="*60)
         output.append(f"{self.APP_NAME} v{self.APP_VERSION} - Configuration")
-        output.append("="*60)
         
-        output.append("\n🔧 Application:")
+        output.append("\nApplication:")
         output.append(f"  Debug Mode: {self.DEBUG}")
         output.append(f"  Log Level: {self.LOG_LEVEL}")
         
-        output.append("\n🤖 LLM:")
+        output.append("\nLLM:")
         output.append(f"  Provider: {self.LLM_PROVIDER}")
         if self.LLM_PROVIDER == "ollama":
             output.append(f"  Model: {self.OLLAMA_MODEL}")
             output.append(f"  URL: {self.OLLAMA_BASE_URL}")
         
-        output.append("\n🔍 Tools:")
+        output.append("\n Tools:")
         output.append(f"  Max Search Results: {self.MAX_SEARCH_RESULTS}")
         output.append(f"  Max Tool Calls: {self.MAX_TOOL_CALLS_PER_QUERY}")
         output.append(f"  URL Timeout: {self.URL_FETCH_TIMEOUT}s")
         
-        output.append("\n👥 Agents:")
+        output.append("\n Agents:")
         output.append(f"  Confidence Threshold: {self.CONFIDENCE_THRESHOLD}")
         output.append(f"  Max Retries: {self.MAX_RETRIES}")
         
-        output.append("\n🔐 API Keys:")
-        output.append(f"  Tavily: {'✅ Set' if self.TAVILY_API_KEY else '❌ Missing'}")
+        output.append("\n API Keys:")
+        output.append(f"  Tavily: {' Set' if self.TAVILY_API_KEY else ' Missing'}")
         
-        output.append("\n" + "="*60)
         
         return "\n".join(output)
     
