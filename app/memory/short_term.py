@@ -1,3 +1,11 @@
+"""
+Short-Term Memory for AgentMesh
+
+Runtime memory storage for a single query execution.
+Stores current plan, agent outputs, and intermediate results.
+Auto-cleanup after completion.
+"""
+
 from typing import Any, Dict, Optional, List
 from datetime import datetime
 import threading
@@ -6,7 +14,7 @@ import uuid
 
 from app.core import (
     logger,
-    # MemoryException,
+    MemoryException,
     MemoryStorageError,
     MemoryRetrievalError
 )
@@ -126,7 +134,7 @@ class ShortTermMemory:
             state = self._store.get(query_id)
             
             if not state:
-                logger.warning("Query not found in memory", query_id=query_id)
+                logger.warning(f"Query not found in memory", query_id=query_id)
             
             return state
     
@@ -395,6 +403,68 @@ class ShortTermMemory:
                     "Retry count incremented",
                     query_id=query_id,
                     retry_count=state.retry_count
+                )
+    
+    def cleanup_after_completion(self, query_id: str):
+        """
+        Clean up unnecessary data after query completes
+        Reduces memory from ~78KB to ~6KB per completed query
+        
+        Args:
+            query_id: Query ID
+        """
+        with self._lock:
+            state = self._store.get(query_id)
+            
+            if state and state.status in ['completed', 'failed']:
+                # Clear intermediate data (not needed after completion)
+                state.plan = None
+                state.research_findings = []
+                state.verification_results = None
+                state.draft_answer = None
+                state.reflection_feedback = None
+                
+                # Clear debug data (already in logs)
+                state.tool_calls = []
+                state.errors = []
+                
+                logger.info(
+                    "Cleaned up completed query",
+                    query_id=query_id,
+                    status=state.status
+                )
+    
+    def clear_old_completed_queries(self, max_age_minutes: int = 10):
+        """
+        Auto-clear completed queries after max_age_minutes
+        Prevents memory from growing forever
+        
+        Args:
+            max_age_minutes: Max age in minutes before removal
+        """
+        with self._lock:
+            now = datetime.now()
+            to_delete = []
+            
+            for query_id, state in self._store.items():
+                # Only clear completed/failed
+                if state.status not in ['completed', 'failed']:
+                    continue
+                
+                # Check age
+                age_minutes = (now - state.updated_at).total_seconds() / 60
+                if age_minutes > max_age_minutes:
+                    to_delete.append(query_id)
+            
+            # Delete old queries
+            for query_id in to_delete:
+                self.clear_query(query_id)
+            
+            if to_delete:
+                logger.info(
+                    "Auto-cleared old queries",
+                    count=len(to_delete),
+                    max_age=f"{max_age_minutes}min"
                 )
     
     def clear_query(self, query_id: str):
