@@ -85,6 +85,7 @@ class Settings(BaseSettings):
         description="Maximum webpage size to fetch in MB"
     )
     
+    
     # Domain Allowlist
     ALLOWED_DOMAINS: List[str] = Field(
         default=[

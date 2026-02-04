@@ -14,7 +14,6 @@ import uuid
 
 from app.core import (
     logger,
-    MemoryException,
     MemoryStorageError,
     MemoryRetrievalError
 )
@@ -134,7 +133,7 @@ class ShortTermMemory:
             state = self._store.get(query_id)
             
             if not state:
-                logger.warning(f"Query not found in memory", query_id=query_id)
+                logger.warning("Query not found in memory", query_id=query_id)
             
             return state
     
