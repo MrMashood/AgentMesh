@@ -101,7 +101,7 @@ class AgentLogger:
     
     def agent_action(self, agent_name: str, action: str, details: Optional[dict] = None):
         """Log agent action"""
-        msg = f"🤖 {agent_name} → {action}"
+        msg = f"{agent_name} → {action}"
         if details:
             self.info(msg, **details)
         else:
@@ -113,7 +113,7 @@ class AgentLogger:
     
     def tool_result(self, tool_name: str, success: bool, details: Optional[dict] = None):
         """Log tool result"""
-        status = "✅ Success" if success else "❌ Failed"
+        status = " Success" if success else " Failed"
         msg = f"{status}: {tool_name}"
         if details:
             self.info(msg, **details)
@@ -122,12 +122,12 @@ class AgentLogger:
     
     def query_start(self, query: str, query_id: str):
         """Log query start"""
-        self.info("📝 New query started", query=query, query_id=query_id)
+        self.info(" New query started", query=query, query_id=query_id)
     
     def query_complete(self, query_id: str, confidence: float, duration: float):
         """Log query completion"""
         self.info(
-            "✅ Query completed",
+            "Query completed",
             query_id=query_id,
             confidence=confidence,
             duration_seconds=f"{duration:.2f}"
@@ -135,7 +135,7 @@ class AgentLogger:
     
     def query_failed(self, query_id: str, error: str):
         """Log query failure"""
-        self.error("❌ Query failed", query_id=query_id, error=error)
+        self.error(" Query failed", query_id=query_id, error=error)
 
 
 class AgentLoggerFactory:
@@ -205,16 +205,16 @@ class LogTimer:
     
     def __enter__(self):
         self.start_time = datetime.now()
-        self.logger.debug(f"⏱️  Starting: {self.operation}")
+        self.logger.debug(f" Starting: {self.operation}")
         return self
     
     def __exit__(self, exc_type, exc_val, exc_tb):
         duration = (datetime.now() - self.start_time).total_seconds()
         
         if exc_type is None:
-            self.logger.info(f"✅ Completed: {self.operation}", duration=f"{duration:.2f}s")
+            self.logger.info(f"Completed: {self.operation}", duration=f"{duration:.2f}s")
         else:
-            self.logger.error(f"❌ Failed: {self.operation}", duration=f"{duration:.2f}s", error=str(exc_val))
+            self.logger.error(f"Failed: {self.operation}", duration=f"{duration:.2f}s", error=str(exc_val))
         
         return False  # Don't suppress exceptions
 

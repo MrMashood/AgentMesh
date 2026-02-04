@@ -3,14 +3,10 @@ from app.tools.url_fetch import is_allowed_domain, fetch_and_extract_with_retry,
 from app.core.config import settings
 
 if __name__ == "__main__":
-    print("="*60)
     print("Testing Enhanced URL Fetch Tool")
-    print("="*60)
     
     # Test 1: Domain checking
-    print("\n" + "="*60)
     print("TEST 1: Domain Validation")
-    print("="*60)
     
     test_urls = [
         ("https://www.who.int/news", True),
@@ -21,28 +17,26 @@ if __name__ == "__main__":
     
     for url, should_allow in test_urls:
         allowed = is_allowed_domain(url)
-        status = "✅ PASS" if allowed == should_allow else "❌ FAIL"
+        status = "PASS" if allowed == should_allow else " FAIL"
         action = "ALLOWED" if allowed else "BLOCKED"
         print(f"{status}: {action} - {url}")
     
     # Test 2: Basic URL fetch
-    print("\n" + "="*60)
     print("TEST 2: Basic URL Fetch")
-    print("="*60)
     
     try:
         test_url = "https://httpbin.org/html"
         html = open_url(test_url)
         
         if html:
-            print(f"✅ Successfully fetched HTML ({len(html)} characters)")
+            print(f"Successfully fetched HTML ({len(html)} characters)")
             
             text = extract_text(html, max_length=500)
             if text:
-                print(f"✅ Extracted {len(text)} characters")
-                print(f"📄 Preview: {text[:200]}...")
+                print(f"Successfully extracted {len(text)} characters")
+                print(f"Preview: {text[:200]}...")
         else:
-            print("❌ Failed to fetch")
+            print("Failed to fetch")
     
     except Exception as e:
         print(f"⚠️  Error: {e}")
