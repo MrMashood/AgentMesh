@@ -64,6 +64,20 @@ class Settings(BaseSettings):
         description="Logging level: DEBUG, INFO, WARNING, ERROR, CRITICAL"
     )
     
+    # MongoDB Configuration
+    MONGODB_URI: str = Field(
+        default="mongodb://localhost:27017/",
+        description="MongoDB connection URI"
+    )
+    MONGODB_DATABASE: str = Field(
+        default="agentmesh",
+        description="MongoDB database name"
+    )
+    MONGODB_TIMEOUT: int = Field(
+        default=5000,
+        description="MongoDB connection timeout (ms)"
+    )
+    
     # Tool Settings
     MAX_SEARCH_RESULTS: int = Field(
         default=5,
