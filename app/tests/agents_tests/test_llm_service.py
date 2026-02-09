@@ -114,7 +114,6 @@ def test_llm_service():
         print(f"High temp (1.0): {response_high['text'][:50]}...")
         
         print("ALL LLM SERVICE TESTS PASSED!")
-        print("\nNote: These tests make real API calls and will consume tokens")
         
     except Exception as e:
         print(f"\nTEST FAILED: {e}")
