@@ -216,6 +216,11 @@ class PlanningError(AgentException):
         )
 
 
+class AgentError(AgentMeshException):
+    """Agent execution errors"""
+    pass
+
+
 class ResearchError(AgentException):
     """Raised when research agent fails to find information"""
     
