@@ -63,6 +63,20 @@ class ConfigurationError(AgentMeshException):
             context=ctx,
             recoverable=False  # ← Make sure this is False!
         )
+        
+class LLMError(AgentMeshException):
+    """Raised when there's an LLM-related error"""
+    pass
+
+
+class APIError(LLMError):
+    """Raised when there's an API-related error"""
+    pass
+
+
+class ValidationError(AgentMeshException):
+    """Raised when validation fails"""
+    pass
 
 
 class MissingAPIKeyError(ConfigurationError):
