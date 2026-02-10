@@ -4,7 +4,7 @@ FastAPI route definitions
 """
 
 from fastapi import APIRouter, HTTPException, status
-from fastapi.responses import JSONResponse
+# from fastapi.responses import JSONResponse
 import traceback
 
 from app.core.logger import logger
