@@ -249,7 +249,7 @@ Provide your analysis in the following JSON format:
         confidence = self._estimate_confidence(analysis, past_learnings)
         
         plan = {
-            "query_id": self.short_memory.get_query(query)["query_id"] if self.short_memory.get_query(query) else "unknown",
+            # "query_id": self.short_memory.get_query(query)["query_id"] if self.short_memory.get_query(query) else "unknown",
             "strategy": self._determine_strategy(analysis),
             "agents": agents_needed,
             "steps": steps,

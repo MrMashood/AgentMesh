@@ -84,7 +84,8 @@ class Orchestrator:
         
         try:
             # Initialize short-term memory for this query
-            self.short_memory.set_query(query_id, query)
+            self.short_memory.create_query(query, query_id)
+            
             
             # Execute pipeline
             result = self._execute_pipeline(
@@ -101,7 +102,7 @@ class Orchestrator:
             self._update_stats(success=True, execution_time=execution_time)
             
             # Clean up short-term memory
-            self.short_memory.clear(query_id)
+            self.short_memory.clear_query(query_id)
             
             logger.info(
                 f"Query processed successfully in {execution_time:.2f}s",
@@ -118,7 +119,7 @@ class Orchestrator:
             logger.error(f"Query processing failed: {e}", extra={"query_id": query_id})
             
             # Clean up on failure
-            self.short_memory.clear(query_id)
+            self.short_memory.clear_query(query_id)
             
             raise AgentError(f"Failed to process query: {e}")
     
