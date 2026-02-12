@@ -157,39 +157,68 @@ class BaseAgent(ABC):
             Context dictionary
         """
         try:
+            state = self.short_memory.get_query_state(query_id)
+            
+            if not state:
+                logger.warning(f"No state found for query {query_id}")
+                return {}
             context = {
-                "query": self.short_memory.get_query(query_id),
-                "plan": self.short_memory.get_plan(query_id),
-                "agent_outputs": self.short_memory.get_all_agent_outputs(query_id),
-                "tool_calls": self.short_memory.get_tool_calls(query_id)
-            }
+            "query": state.query,
+            "status": state.status,
+            "retry_count": state.retry_count
+        }
+            
+            # Add available data
+            if state.plan:
+                context["plan"] = state.plan
+            
+            if state.research_findings:
+                context["research_findings"] = state.research_findings
+                context["sources"] = state.sources
+            
+            if state.verification_results:
+                context["verification_results"] = state.verification_results
+            
+            if state.draft_answer:
+                context["draft_answer"] = state.draft_answer
+            
+            if state.reflection_feedback:
+                context["reflection_feedback"] = state.reflection_feedback
+                context["confidence_score"] = state.confidence_score
+                
             return context
         except Exception as e:
             logger.warning(f"Failed to get context from memory: {e}")
             return {}
     
-    def _store_output(
-        self,
-        query_id: str,
-        output: Dict[str, Any]
-    ):
-        """
-        Store agent output in short-term memory
-        
-        Args:
-            query_id: Query identifier
-            output: Agent output to store
-        """
+    def _store_output(self,query_id: str,output: Dict[str, Any]):
+
         try:
-            self.short_memory.add_agent_output(
-                query_id=query_id,
-                agent_name=self.name,
-                output=output
-            )
+            if self.name == "planner":
+                self.short_memory.store_plan(query_id, output)
+            elif self.name == "research":
+            # Research outputs a dict with findings, convert to list if needed
+                findings = output.get("extracted_content", [])
+                if not isinstance(findings, list):
+                    findings = [output]
+                self.short_memory.store_research_findings(query_id, findings)
+            elif self.name == "verification":
+                self.short_memory.store_verification_results(query_id, output)
+            elif self.name == "synthesis":
+            # Synthesis outputs an answer string
+                answer = output.get("answer", "")
+                self.short_memory.store_draft_answer(query_id, answer)
+            elif self.name == "reflection":
+                self.short_memory.store_reflection_feedback(query_id, output)
+            else:
+            # Generic storage - just log it
+                logger.debug(f"{self.name} output stored (generic)")
+        
             logger.debug(f"{self.name} output stored in memory")
-        except Exception as e:
-            logger.error(f"Failed to store output: {e}")
-            raise AgentError(f"Cannot store output: {e}")
+        
+        except Exception as error:
+            logger.error(f"Failed to store output: {error}")
+            raise AgentError(f"Cannot store output: {error}")
     
     def _get_past_learnings(self, topic: str) -> List[Dict]:
         """

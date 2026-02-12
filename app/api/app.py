@@ -21,8 +21,10 @@ async def lifespan(app: FastAPI):
     """
     # Startup
     logger.info("Starting AgentMesh API...")
-    logger.info(f"Environment: {settings.ENV}")
-    logger.info(f"Debug mode: {settings.DEBUG}")
+    # logger.info(f"Environment: {settings.ENV}")
+    # logger.info(f"Debug mode: {settings.DEBUG}")
+    
+    logger.info("AgentMesh API started successfully")
     
     yield
     
@@ -55,7 +57,7 @@ def create_app() -> FastAPI:
     # Add CORS middleware
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=["*"],  # Configure appropriately for production
+        allow_origins=["*"],
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
@@ -67,11 +69,14 @@ def create_app() -> FastAPI:
     # Include routes
     app.include_router(router, prefix="/api/v1", tags=["queries"])
     
-    # Root endpoint
+    # Root endpoint - FIX THIS
     @app.get("/", tags=["root"])
     async def root():
         return {
             "name": "AgentMesh API",
+            "version": "1.0.0",
+            "status": "operational",  # ← Make sure this field exists
+            "docs": "/docs"
         }
     
     logger.info("FastAPI app created successfully")
